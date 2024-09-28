@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page with Sliding Sidebar</title>
+    <style>
+        body {
+            padding: 30px;
+            background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /* Sidebar container */
+        .profile-sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%; /* Start hidden to the left */
+            width: 300px;
+            height: 100%;
+            background-color: #f0f0f0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: left 0.3s ease-in-out;
+            padding: 20px;
+        }
+
+        .profile-sidebar.open {
+            left: 0; /* Slide in to view */
+        }
+
+        .profile-info {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .profile-info span {
+            font-weight: 600;
+            font-size: 20px;
+            color: black;
+        }
+
+        button {
+            margin-top: 10px;
+            color: white;
+            background-color: #7f8c8d;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #34495e;
+        }
+
+        /* Toggle button to open/close the sidebar */
+        .toggle-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        /* Logout button inside the sidebar */
+        .logout-btn {
+            display: inline-block;
+            color: white;
+            background-color: #e74c3c;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Back button inside the sidebar */
+        .back-btn {
+            display: inline-block;
+            color: white;
+            background-color: #2ecc71;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            margin-bottom: 20px; /* Space between back and logout buttons */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to </h1>
+
+    <!-- Toggle Button -->
+    <button class="toggle-button" id="toggleSidebarBtn">Open Profile</button>
+
+    <!-- Sidebar for Profile Information -->
+    <div class="profile-sidebar" id="profileSidebar">
+        <button class="back-btn" id="backButton">Back</button>
+        <div class="profile-info">First Name: <span id="loggedUserFName">John</span></div>
+        <div class="profile-info">Last Name: <span id="loggedUserLName">Doe</span></div>
+        <div class="profile-info">Email: <span id="loggedUserEmail">john.doe@example.com</span></div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <script type="module" src="./profilepage.js"></script>
+
+    <script>
+        // Function to toggle the sidebar
+        const toggleButton = document.getElementById('toggleSidebarBtn');
+        const sidebar = document.getElementById('profileSidebar');
+        const backButton = document.getElementById('backButton');
+
+        toggleButton.addEventListener('click', function () {
+            sidebar.classList.toggle('open');
+            toggleButton.textContent = sidebar.classList.contains('open') ? 'Close Profile' : 'Open Profile';
+        });
+
+        // Event listener for back button
+        backButton.addEventListener('click', function () {
+            sidebar.classList.remove('open');
+            toggleButton.textContent = 'Open Profile';
+        });
+
+        // Example logout function (just for demonstration)
+        function logout() {
+            alert('Logging out...');
+            // Add your logout logic here
+        }
+    </script>
+</body>
+</html>
